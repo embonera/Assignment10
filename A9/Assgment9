@@ -1,0 +1,16 @@
+$path = "HKLM:\System\CurrentControlSet\Control\Session Manager\Environment"
+#Set-Location -Path "HKLM:\System\CurrentControlSet\Control\Session Manager\Environment"
+
+if(Test-Path -path "HKLM:\System\CurrentControlSet\Control\Session Manager\Environment\LM_LICENSE_FILE" ){
+     $variable = Get-ItemPropertyValue -Path $path -Name 'LM_LICENSE_FILE'
+    if ($variable -match '27000@test.university.com'){ 
+    Write-Host 'No more work needed'}
+    else { Set-ItemProperty -Path $path -Name 'LM_LICENSE_FILE' -Value '27000@test.university.com'}
+
+    }
+else { New-ItemProperty -Path $path -Name 'LM_LICENSE_FILE'
+
+Set-ItemProperty -Path $path -Name 'LM_LICENSE_FILE' -Value '27000@test.university.com'}
+
+
+
